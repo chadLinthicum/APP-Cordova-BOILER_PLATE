@@ -29,7 +29,7 @@ btn_skipForward.onclick = function () {
 };
 
 // video.addEventListener("canplay", (event) => {
-//   console.log("Video can start, but not sure it will play through.");
+//   console.log("Test - canplay");
 // });
 
 video.addEventListener("timeupdate", function () {
