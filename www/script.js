@@ -1,41 +1,44 @@
-let video = document.querySelector(".video");
-let juice = document.querySelector(".orange-juice");
-let btn_play = document.getElementById("play-pause");
-let btn_skipForward = document.getElementById("skip-forward");
+// https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-media/index.html
+// cordova media plugin
 
-function togglePlayPause() {
-  if (video.paused) {
-    btn_play.className = "pause";
-    video.play();
-  } else {
-    btn_play.className = "play";
-    video.pause();
-  }
-}
+let app = {
+  init: function () {
+    document.addEventListener("deviceready", app.ready, false);
+  },
+  ready: function () {
+    let src = "file:///android_asset/www/media/demo.mp4";
+    app.media = new Media(src);
+    document.querySelector("#play-btn").addEventListener("click", app.play);
+    document.querySelector("#pause-btn").addEventListener("click", app.pause);
+    document.querySelector("#ff-btn").addEventListener("click", app.ff);
+    document.querySelector("#rew-btn").addEventListener("click", app.rew);
+  },
 
-btn_play.onclick = function () {
-  togglePlayPause();
+  play: function () {
+    app.media.play();
+  },
+  pause: function () {
+    app.media.pause();
+  },
+  ff: function () {
+    app.media.getCurrentPosition((pos) => {
+      let dur = app.media.getDuration();
+      pos += 10;
+      if (pos < dur) {
+        app.media.seekTo(pos * 1000);
+      }
+    });
+  },
+  rew: function () {
+    app.media.getCurrentPosition((pos) => {
+      pos -= 10;
+      if (pos > 0) {
+        app.media.seekTo(pos * 1000);
+      } else {
+        app.media.seekTo(0);
+      }
+    });
+  },
 };
 
-btn_skipForward.onclick = function () {
-  console.log(video.seekable.length);
-  console.log(video.seekable);
-  console.log(
-    "Start: " + video.seekable.start(0) + " End: " + video.seekable.end(0)
-  );
-
-  video.currentTime = video.currentTime + 5;
-  // video.fastSeek(5);
-};
-
-// video.addEventListener("canplay", (event) => {
-//   console.log("Test - canplay");
-// });
-
-video.addEventListener("timeupdate", function () {
-  let juicePos = video.currentTime / video.duration;
-  juice.style.width = juicePos * 100 + "%";
-  if (video.ended) {
-    btn_play.className = "play";
-  }
-});
+app.init();

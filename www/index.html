@@ -1,24 +1,19 @@
-<head>
-  <link href="https://vjs.zencdn.net/7.20.1/video-js.css" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Video Test</title>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="https://vjs.zencdn.net/7.20.1/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Video Test</title>
+  </head>
 
-<body>
-  <div class="container">
-    <div class="c-video">
-      <video class="video" src="video.mp4"></video>
-      <div class="controls">
-        <div class="orange-bar">
-          <div class="orange-juice"></div>
-        </div>
-        <div class="buttons">
-          <button id="play-pause"></button>
-          <button id="skip-forward"></button>
-        </div>
-      </div>
+  <body>
+    <div id="master">
+      <p><button id="play-btn">Play</button></p>
+      <p><button id="pause-btn">Pause</button></p>
+      <p><button id="ff-btn">Fast Forward</button></p>
+      <p><button id="rew-btn">Rewind</button></p>
     </div>
-  </div>
-</body>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
+    <script src="cordova.js"></script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 {
   "name": "chad.chad.chad",
-  "displayName": "HelloCordova",
+  "displayName": "VidScrubTest",
   "version": "1.0.0",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "main": "index.js",
@@ -15,10 +15,17 @@
   "cordova": {
     "platforms": [
       "android"
-    ]
+    ],
+    "plugins": {
+      "cordova-plugin-streaming-media": {},
+      "cordova-plugin-media": {}
+    }
   },
   "devDependencies": {
     "cordova-android": "^10.1.2",
+    "cordova-plugin-file": "^7.0.0",
+    "cordova-plugin-media": "^6.1.0",
+    "cordova-plugin-streaming-media": "github:nchutchind/cordova-plugin-streaming-media",
     "Html5Video": "file:Html5Video-master"
   }
 }
